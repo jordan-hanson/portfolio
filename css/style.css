@@ -9,6 +9,10 @@ border: solid 0px !important;
     width: 100%;
 
 }
+.carousel-caption{
+    right: 2px;
+    left: 2px;
+}
 .projectTitle{
     text-align: center;
 }
