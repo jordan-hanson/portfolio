@@ -46,19 +46,20 @@
                 <div class="form-group">
                     <div class="form-row">
                         <div class="col" style="padding-bottom: 10px;">
-                            <input type="text" class="form-control" placeholder="First name">
+                            <input type="text" class="form-control" id="firstname" placeholder="First name">
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" placeholder="Last name">
+                            <input type="text" class="form-control" id="lastname" placeholder="Last name">
                         </div>
                     </div>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
                         placeholder="Enter email">
                     <div class="form-group" style="padding-top: 10px;">
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                        <textarea class="form-control" id="textarea" rows="3"
                             placeholder="Type your message here..."></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary" style="padding-bottom: 10px;">Submit</button>
+                    <button type="submit" class="btn btn-primary" id="submit"
+                        style="padding-bottom: 10px;">Submit</button>
             </form>
             <div class="col-3"></div>
         </div>
@@ -67,15 +68,32 @@
         <div class="footer-copyright text-center py-3">© 2020 Copyright
         </div>
     </footer>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
+    <script>
+        $("#submit").on("click", function (e) {
+            e.preventDefault()
+            console.log("you got clicked", $("#firstname").val(), $("#lastname").val(), $("#email").val(), $("#textarea").val())
+            let newSubmission = {
+                firstname: $("#firstname").val(),
+                lastname: $("#lastname").val(),
+                email: $("#email").val(),
+                textarea: $("#textarea").val()
+            }
+            $.ajax({
+                url: "/save",
+                type: "post",
+                data: newSubmission
+            })
+        })
+
+    </script>
 </body>
 
 </html>
